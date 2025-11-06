@@ -1,35 +1,51 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router/tabs";
+import { Text } from "@gluestack-ui/themed";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+const noHead = { headerShown: false };
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabsLayout = () => {
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color }) => {
+
+          let iconName: keyof typeof Ionicons.glyphMap = "home-outline";
+
+          switch (route.name) {
+            case "home":
+              iconName = "home-outline";
+              break;
+            case "power":
+              iconName = "power";
+              break;
+            case "profile":
+              iconName = "person-circle-outline";
+              break;
+          }
+
+          return (
+            <Ionicons
+              name={iconName}
+              size={22}
+              color={focused ? "#4A6EFF" : color}
+            />
+          );
+        },
+        tabBarIconStyle: { marginTop: 5 },
+        tabBarStyle: { height: 60 },
+        tabBarLabel: ({ children, color, focused }) => (
+          <Text mb="$2" color={focused ? "#4A6EFF" : color} fontSize="$xs" fontWeight={focused ? "bold" : "light"}>
+            {children}
+          </Text>
+        ),
+      })}
+    >
+      <Tabs.Screen name="home" options={{ title: "Home", ...noHead }} />
+      <Tabs.Screen name="power" options={{ title: "Power", ...noHead }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile", ...noHead }} />
     </Tabs>
   );
-}
+};
+
+export default TabsLayout;
