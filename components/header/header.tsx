@@ -1,4 +1,5 @@
-import { Box, Image, HStack, Heading, Text, View } from "@gluestack-ui/themed";
+import { Box, Image, HStack, Heading, Text } from "@gluestack-ui/themed";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "expo-router";

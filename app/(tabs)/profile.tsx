@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from "../../components/header";
+import { TouchableOpacity } from "react-native";
 import {
     Box,
     HStack,
@@ -53,33 +54,40 @@ const ProfileCard = ({ userName, pumpName, infoPump }) => (
 );
 
 // Component untuk Pump List Item dengan Toggle
-const PumpListItem = ({ item, isActive, onToggle }) => (
-    <Box
-        bg="$blue100"
-        borderRadius="$lg"
-        p="$4"
-    >
-        <HStack justifyContent="space-between" alignItems="center">
-            <VStack flex={1}>
-                <Text fontSize="$md" fontWeight="$semibold" mb="$1">
-                    {item.title}
-                </Text>
-                <Text fontSize="$sm" color="$textLight600">
-                    {item.value}
-                </Text>
-            </VStack>
+const PumpListItem = ({ item, isActive, onToggle, onPress }) => (
+    <Pressable onPress={onPress}>
+        <Box
+            bg="$blue100"
+            borderRadius="$lg"
+            p="$4"
+        >
+            <HStack justifyContent="space-between" alignItems="center">
+                <VStack flex={1}>
+                    <Text fontSize="$md" fontWeight="$semibold" mb="$1">
+                        {item.title}
+                    </Text>
+                    <Text fontSize="$sm" color="$textLight600">
+                        {item.value}
+                    </Text>
+                </VStack>
 
-            <Pressable onPress={onToggle}>
-                <Center w={40} h={40}>
-                    <Ionicons
-                        name={isActive ? "toggle" : "toggle-outline"}
-                        size={32}
-                        color={isActive ? "#2CB810" : "#666"}
-                    />
-                </Center>
-            </Pressable>
-        </HStack>
-    </Box>
+                <Pressable 
+                    onPress={(e) => {
+                        e.stopPropagation();
+                        onToggle();
+                    }}
+                >
+                    <Center w={40} h={40}>
+                        <Ionicons
+                            name={isActive ? "toggle" : "toggle-outline"}
+                            size={32}
+                            color={isActive ? "#2CB810" : "#666"}
+                        />
+                    </Center>
+                </Pressable>
+            </HStack>
+        </Box>
+    </Pressable>
 );
 
 
@@ -91,6 +99,8 @@ const Profile = () => {
         name: 'Junanda Deyastusesa',
         activePump: 'Pompa Inoto A'
     });
+
+    const [selectedPump, setSelectedPump] = useState(null);
 
     const [infoItems] = useState([
         { title: 'Level Drum', value: '30' },
@@ -113,6 +123,20 @@ const Profile = () => {
         // { id: 6, title: 'Pompa Inoto F', value: '3KWH, 4HP, 380V', isActive: false },
         // { id: 7, title: 'Pompa Inoto G', value: '3KWH, 4HP, 380V', isActive: true },
     ]);
+
+    const handleOpenUpdatePompa = (pump) => {
+        // Navigasi ke halaman update dengan membawa data pompa
+        router.push({
+            pathname: '/(sub-menu)/update-pompa',
+            params: {
+                pumpId: pump.id,
+                pumpName: pump.title,
+                pumpValue: pump.value,
+            }
+        });
+    };
+
+    //
 
     // Handlers
     const handleNotification = () => {
@@ -158,14 +182,17 @@ const Profile = () => {
                                 item={item}
                                 isActive={item.isActive}
                                 onToggle={() => handleTogglePump(item.id)}
+                                onPress={() => handleOpenUpdatePompa(item)}
                             />
+                        ))}
                         ))}
                     </VStack>
 
                     {/* Tombol Logout atau Settings - Optional */}
                     <Box mt="$4" mb="$6">
-                        <Pressable
-                            onPress={() => console.log('Add pressed')}
+                        <TouchableOpacity
+                            onPress={() => router.push('/(sub-menu)/add-pompa')}
+                            activeOpacity={0.7}
                         >
                             <Box
                                 bg="$green100"
@@ -183,11 +210,12 @@ const Profile = () => {
                                     </HStack>
                                 </HStack>
                             </Box>
-                        </Pressable>
+                        </TouchableOpacity>
 
-                        <Pressable
-                            onPress={() => console.log('Settings pressed')}
-                        >
+                        <TouchableOpacity
+                            onPress={() => router.push('/(sub-menu)/update-profile')}
+                            activeOpacity={0.7}
+                                                >
                             <Box
                                 bg="$white"
                                 borderRadius="$lg"
@@ -206,7 +234,7 @@ const Profile = () => {
                                     <Ionicons name="chevron-forward" size={24} color="#666" />
                                 </HStack>
                             </Box>
-                        </Pressable>
+                        </TouchableOpacity>
 
                         <Pressable
                             onPress={() => console.log('Logout pressed')}
