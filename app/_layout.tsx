@@ -7,10 +7,11 @@ const noHead = { headerShown: false };
 const StackLayout = () => {
   return (
     <GluestackUIProvider config={config}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={noHead} />
-          <Stack.Screen name="modal" options={noHead} />
-        </Stack>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={noHead} />
+        <Stack.Screen name="modal" options={noHead} />
+        <Stack.Screen name="(sub-menu)/history-cuaca" options={{ title: "Riwayat Cuaca" }} />
+      </Stack>
     </GluestackUIProvider>
   );
 };
