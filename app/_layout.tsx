@@ -11,6 +11,8 @@ const StackLayout = () => {
         <Stack.Screen name="(tabs)" options={noHead} />
         <Stack.Screen name="modal" options={noHead} />
         <Stack.Screen name="(sub-menu)/history-cuaca" options={{ title: "Riwayat Cuaca" }} />
+        <Stack.Screen name="(sub-menu)/history-drum" options={{ title: "Riwayat Level Drum" }} />
+        <Stack.Screen name="(sub-menu)/history-tanah" options={{ title: "Riwayat Kelembaban Tanah" }} />
       </Stack>
     </GluestackUIProvider>
   );
