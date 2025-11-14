@@ -45,7 +45,6 @@ const UpdatePompa: React.FC = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#F8FEFF' }}>
-            <Header title="Update Data Pompa" showBackButton />
             
             <ScrollView>
                 <Box px="$5" py="$4">
@@ -119,4 +118,4 @@ const UpdatePompa: React.FC = () => {
     );
 };
 
-export default UpdatePompa;
+export default UpdatePompa;

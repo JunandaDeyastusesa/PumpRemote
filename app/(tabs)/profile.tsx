@@ -135,7 +135,6 @@ const Profile = () => {
             }
         });
     };
-
     //
 
     // Handlers
@@ -156,7 +155,7 @@ const Profile = () => {
     const handlePumpPress = (pump) => {
         console.log('Pompa dipilih:', pump.title);
         // Bisa ditambahkan navigasi ke detail pompa
-        // router.push(`/pump-detail/${pump.id}`);
+        // router.push(/pump-detail/${pump.id});
     };
 
     return (
@@ -185,7 +184,7 @@ const Profile = () => {
                                 onPress={() => handleOpenUpdatePompa(item)}
                             />
                         ))}
-                        ))}
+
                     </VStack>
 
                     {/* Tombol Logout atau Settings - Optional */}
@@ -265,4 +264,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default Profile;
