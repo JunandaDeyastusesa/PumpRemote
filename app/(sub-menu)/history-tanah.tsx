@@ -13,4 +13,4 @@ const HistoryTanah = () => {
     )
 }
 
-export default HistoryTanah;
+export default HistoryTanah;
