@@ -47,11 +47,7 @@ const HistoryDrum = ({ initialStatus = [] }) => {
                       </VStack>
 
                       <Center>
-                        <Text
-                          fontSize="$md"
-                          fontWeight="$bold"
-                          color={item.status === "On" ? "$blue800" : "$red600"}
-                        >
+                        <Text fontSize="$md" fontWeight="$bold" color={item.status === "On" ? "$blue800" : "$red600"}>
                           {item.status}
                         </Text>
                       </Center>

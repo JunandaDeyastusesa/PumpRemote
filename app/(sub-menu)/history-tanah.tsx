@@ -4,7 +4,6 @@ import { ScrollView } from "react-native";
 import { Box, VStack, HStack, Text, Card, Center } from "@gluestack-ui/themed";
 
 const HistoryTanah = ({ initialData = [] }) => {
-  // STATE untuk menyimpan dan mengubah data history
   const [historyData, setHistoryData] = useState(
     initialData.length > 0
       ? initialData
@@ -40,13 +39,7 @@ const HistoryTanah = ({ initialData = [] }) => {
 
               <VStack space="sm">
                 {section.data.map((item, i) => (
-                  <Card
-                    key={i}
-                    backgroundColor="$blue100"
-                    borderRadius="$xl"
-                    p="$4"
-                    variant="filled"
-                  >
+                  <Card key={i} backgroundColor="$blue100" borderRadius="$xl" p="$4" variant="filled">
                     <HStack justifyContent="space-between" alignItems="center">
                       <VStack>
                         <Text fontWeight="$bold">{item.title}</Text>
