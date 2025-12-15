@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Header } from "../../components/header";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import {
     Box,
+    Center,
     HStack,
     Heading,
-    Text,
-    Center,
-    VStack,
+    Pressable,
     ScrollView,
-    Pressable
+    Text,
+    VStack
 } from "@gluestack-ui/themed";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Header } from "../../components/header";
 
 // Component untuk Info Card
 const InfoCard = ({ title, value }) => (
@@ -129,6 +129,10 @@ const Power = () => {
         // Tambahkan navigasi atau action lainnya
     };
 
+    const handleViewAllHistory = () => {
+        router.push("/(sub-menu)/history-pump");
+    };
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#F8FEFF' }}>
             <Header title="Monitoring Pompa" />
@@ -144,8 +148,17 @@ const Power = () => {
 
                     {/* Pump History Section */}
                     <VStack space="md" mt="$6">
-                        <Heading size="lg">Riwayat Pompa</Heading>
-                        <Text fontSize="$sm" color="$textLight600">12 Jan 2025</Text>
+                        <HStack justifyContent="space-between" alignItems="center">
+                            <VStack>
+                                <Heading size="lg">Riwayat Penggunaan</Heading>
+                                <Text fontSize="$sm" color="$textLight600">12 Jan 2025</Text>
+                            </VStack>
+                            <Pressable onPress={handleViewAllHistory}>
+                                <Text fontSize="$sm" color="$blue600" fontWeight="$semibold">
+                                    Lihat semua
+                                </Text>
+                            </Pressable>
+                        </HStack>
 
                         {pumpHistory.map((item, index) => (
                             <PumpHistoryCard key={index} item={item} />
