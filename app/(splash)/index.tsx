@@ -65,7 +65,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ logoSource = require("../..
       animateDot(dot3, 400);
 
       setTimeout(() => {
-        router.replace("/(tabs)/home");
+        router.replace("/(auth)/login");
       }, loadingDuration);
     });
   }, []);

@@ -10,10 +10,12 @@ const StackLayout = () => {
       <Stack initialRouteName="(splash)/index">
         <Stack.Screen name="(splash)/index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={noHead} />
+        <Stack.Screen name="(auth)" options={noHead} />
         <Stack.Screen name="modal" options={noHead} />
         <Stack.Screen name="(sub-menu)/history-cuaca" options={{ title: "Riwayat Cuaca" }} />
         <Stack.Screen name="(sub-menu)/history-drum" options={{ title: "Riwayat Level Drum" }} />
         <Stack.Screen name="(sub-menu)/history-tanah" options={{ title: "Riwayat Kelembaban Tanah" }} />
+        <Stack.Screen name="(sub-menu)/history-pump" options={{ title: "Riwayat Pompa" }} />
       </Stack>
     </GluestackUIProvider>
   );
